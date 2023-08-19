@@ -1,0 +1,3 @@
+strong_enhancer_label	chr1-135793436-135793600_CPPE
+inactive_label	chr1-132064989-132065153_UPPN
+block_start_coords	0,56,67,78,86,136,147

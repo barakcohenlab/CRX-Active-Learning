@@ -1,0 +1,10 @@
+data_name	Genomic	CrxMotifMutant	Round2	Round3a	Round3b	Round3c	Round4a	Round4b
+GenomicOnly	new	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+Round1	old	new	NaN	NaN	NaN	NaN	NaN	NaN
+Round2	old	old	new	NaN	NaN	NaN	NaN	NaN
+Round3a	old	old	old	new	NaN	NaN	NaN	NaN
+Round3b	old	old	old	old	new	NaN	NaN	NaN
+Round3c	old	old	old	NaN	NaN	new	NaN	NaN
+Round4a	old	old	old	old	old	NaN	new	NaN
+Round4b	old	old	old	old	old	NaN	NaN	new
+Round3aNoRound2	old	old	NaN	new	NaN	NaN	NaN	NaN

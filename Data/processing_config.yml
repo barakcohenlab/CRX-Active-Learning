@@ -1,0 +1,157 @@
+---
+min_dna_counts: 50
+max_rna_cv: 0.8
+basal_key: BASAL
+min_basal_median: 0.05
+output_dir: Measurements/
+scrambled_fasta: Sequences/Fasta/scrambled.fasta
+standards_fasta: Sequences/Fasta/standards.fasta
+
+libraries: {
+  library1: {
+    fasta: Sequences/Fasta/library1.fasta,
+    barcode_mapping: Sequences/BarcodeMapping/library1.txt,
+    rna_files: {
+      RNA1: Measurements/Library1/Samples/library1Rna1.counts,
+      RNA2: Measurements/Library1/Samples/library1Rna2.counts,
+      RNA3: Measurements/Library1/Samples/library1Rna3.counts,
+    },
+    dna_file: [DNA, Measurements/Library1/Samples/library1Plasmid.counts],
+    write_output: True,
+  },
+
+  library2: {
+    fasta: Sequences/Fasta/library2.fasta,
+    barcode_mapping: Sequences/BarcodeMapping/library2.txt,
+    rna_files: {
+      RNA1: Measurements/Library2/Samples/library2Rna1.counts,
+      RNA2: Measurements/Library2/Samples/library2Rna2.counts,
+      RNA3: Measurements/Library2/Samples/library2Rna3.counts,
+    },
+    dna_file: [DNA, Measurements/Library2/Samples/library2Plasmid.counts],
+    write_output: True,
+  },
+
+
+  library3: {
+    fasta: Sequences/Fasta/library3.fasta,
+    barcode_mapping: Sequences/BarcodeMapping/library3.txt,
+    rna_files: {
+      RNA1: Measurements/Library3/Samples/library3Rna1.counts,
+      RNA3: Measurements/Library3/Samples/library3Rna3.counts,
+      RNA4: Measurements/Library3/Samples/library3Rna4.counts,
+      RNA5: Measurements/Library3/Samples/library3Rna5.counts,
+      RNA6: Measurements/Library3/Samples/library3Rna6.counts,
+    },
+    dna_file: [DNA, Measurements/Library3/Samples/library3Plasmid.counts],
+    write_output: True,
+  },
+
+  library4: {
+    fasta: Sequences/Fasta/library4.fasta,
+    barcode_mapping: Sequences/BarcodeMapping/library4.txt,
+    rna_files: {
+      RNA1: Measurements/Library4/Samples/library4Rna1.counts,
+      RNA2: Measurements/Library4/Samples/library4Rna2.counts,
+      RNA3: Measurements/Library4/Samples/library4Rna3.counts,
+    },
+    dna_file: [DNA, Measurements/Library4/Samples/library4Plasmid.counts],
+    write_output: True,
+  },
+
+  library5: {
+    fasta: Sequences/Fasta/library5.fasta,
+    barcode_mapping: Sequences/BarcodeMapping/library5.txt,
+    rna_files: {
+      RNA1: Measurements/Library5/Samples/library5Rna1.counts,
+      RNA2: Measurements/Library5/Samples/library5Rna2.counts,
+      RNA3: Measurements/Library5/Samples/library5Rna3.counts,
+    },
+    dna_file: [DNA, Measurements/Library5/Samples/library5Plasmid.counts],
+    write_output: True,
+  },
+
+  library6: {
+    fasta: Sequences/Fasta/library6.fasta,
+    barcode_mapping: Sequences/BarcodeMapping/library6.txt,
+    rna_files: {
+      RNA1: Measurements/Library6/Samples/library6Rna1.counts,
+      RNA2: Measurements/Library6/Samples/library6Rna2.counts,
+      RNA3: Measurements/Library6/Samples/library6Rna3.counts,
+    },
+    dna_file: [DNA, Measurements/Library6/Samples/library6Plasmid.counts],
+    write_output: True,
+  },
+
+  library7: {
+    fasta: Sequences/Fasta/library7.fasta,
+    barcode_mapping: Sequences/BarcodeMapping/library7.txt,
+    rna_files: {
+      RNA1: Measurements/Library7/Samples/library7Rna1.counts,
+      RNA2: Measurements/Library7/Samples/library7Rna2.counts,
+      RNA3: Measurements/Library7/Samples/library7Rna3.counts,
+    },
+    dna_file: [DNA, Measurements/Library7/Samples/library7Plasmid.counts],
+    write_output: True,
+  },
+  library8a: {
+    fasta: Sequences/Fasta/library8a.fasta,
+    barcode_mapping: Sequences/BarcodeMapping/library8a.txt,
+    rna_files: {
+      RNA1: Measurements/Library8a/Samples/library8aRna1.counts,
+      RNA2: Measurements/Library8a/Samples/library8aRna2.counts,
+      RNA3: Measurements/Library8a/Samples/library8aRna3.counts,
+    },
+    dna_file: [DNA, Measurements/Library8a/Samples/library8aPlasmid1.counts],
+    write_output: True,
+  },
+
+  library8b: {
+    fasta: Sequences/Fasta/library8b.fasta,
+    barcode_mapping: Sequences/BarcodeMapping/library8b.txt,
+    rna_files: {
+      RNA1: Measurements/Library8b/Samples/library8bRna1.counts,
+      RNA2: Measurements/Library8b/Samples/library8bRna2.counts,
+      RNA3: Measurements/Library8b/Samples/library8bRna3.counts,
+    },
+    dna_file: [DNA, Measurements/Library8b/Samples/library8bPlasmid1.counts],
+    write_output: True,
+  },
+
+  library8c: {
+    fasta: Sequences/Fasta/library8c.fasta,
+    barcode_mapping: Sequences/BarcodeMapping/library8c.txt,
+    rna_files: {
+      RNA1: Measurements/Library8c/Samples/library8cRna1.counts,
+      RNA2: Measurements/Library8c/Samples/library8cRna2.counts,
+      RNA3: Measurements/Library8c/Samples/library8cRna3.counts,
+    },
+    dna_file: [DNA, Measurements/Library8c/Samples/library8cPlasmid1.counts],
+    write_output: True,
+  },
+  
+  library9a: {
+    fasta: Sequences/Fasta/library9a.fasta,
+    barcode_mapping: Sequences/BarcodeMapping/library9a.txt,
+    rna_files: {
+      RNA1: Measurements/Library9a/Samples/library9aRna1.counts,
+      RNA2: Measurements/Library9a/Samples/library9aRna2.counts,
+      RNA3: Measurements/Library9a/Samples/library9aRna3.counts,
+    },
+    dna_file: [DNA, Measurements/Library9a/Samples/library9aPlasmid.counts],
+    write_output: True,
+  },
+  
+  library9b: {
+    fasta: Sequences/Fasta/library9b.fasta,
+    barcode_mapping: Sequences/BarcodeMapping/library9b.txt,
+    rna_files: {
+      RNA1: Measurements/Library9b/Samples/library9bRna1.counts,
+      RNA2: Measurements/Library9b/Samples/library9bRna2.counts,
+      RNA3: Measurements/Library9b/Samples/library9bRna3.counts,
+    },
+    dna_file: [DNA, Measurements/Library9b/Samples/library9bPlasmid.counts],
+    write_output: True,
+  },  
+}
+...
