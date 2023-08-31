@@ -8,29 +8,29 @@ channels:
   - conda-forge
   - bioconda
 
-  dependencies:
-    - python=3.9
-    - cython
+dependencies:
+  - python=3.9
+  - cython
 
-    - numpy==1.23.5
-    - scipy==1.10.0
-    - scikit-learn==1.2.0
-    - pandas==1.5.2
-    - fastparquet==2023.2.0
-    - matplotlib==3.6.2
-    - mscorefonts
-    - logomaker==0.8
+  - numpy==1.23.5
+  - scipy==1.10.0
+  - scikit-learn==1.2.0
+  - pandas==1.5.2
+  - fastparquet==2023.2.0
+  - matplotlib==3.6.2
+  - mscorefonts
+  - logomaker==0.8
 
-    - pytorch==1.8.2
-    - torchaudio
-    - torchvision
-    - cudatoolkit==11.1.74
+  - pytorch==1.8.2
+  - torchaudio
+  - torchvision
+  - cudatoolkit==11.1.74
 
-    - jupyterlab
-    - pip
-    - git
+  - jupyterlab
+  - pip
+  - git
 
-    - pip:
-      - deeplift==0.6.13.0
-      # Our fork of Selene
-      - git+https://github.com/rfriedman22/selene.git@a736df7e0ab94f9336875ae69ac14edd7abf7197
+  - pip:
+    - deeplift==0.6.13.0
+    # Our fork of Selene
+    - git+https://github.com/rfriedman22/selene.git@a736df7e0ab94f9336875ae69ac14edd7abf7197
