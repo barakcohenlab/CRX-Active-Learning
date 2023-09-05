@@ -1,4 +1,4 @@
-name: active-learning-tmp
+name: active-learning
 channels:
   - pytorch-lts
   - nvidia
