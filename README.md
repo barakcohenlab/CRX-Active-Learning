@@ -27,7 +27,7 @@ Deep learning model for the regulatory grammar of CRX-dependent enhancers and si
         - `metrics.py`: Wrapper functions to evaluation criteria.
 - Jupyter notebooks are detailed below and are used to generate figures.
 
-## Reproduciting the results
+## Reproducing the results
 ### 1. Setup the environment
 All scripts and notebooks were run on a cluster managed by SLURM.
 
@@ -42,6 +42,7 @@ cd preimage
 python setup.py build_ext -i
 pip install -e .
 ```
+The installation will likely raise warnings about a deprecated Numpy API. This is expected behavior. To test if the installation of the kernel worked, first navigate to `preimage/preimage/tests` and then run `python -m unittest` to run 275 unit tests in about 16 seconds. This is expected to fail with 28 errors, all of which are `AttributeError: 'InferenceFitParameters' object has no attribute 'y_lengths'`. These errors are tolerable because they are for a part of the package that we do not use.
 ### 2. Run scripts
 Run all Python scripts by submitting the shell scripts to the cluster with `sbatch --mail_user=<user@example.com> script.sh`. You can use the `--dependency=afterok:<job ID>` to setup job dependencies.
 
