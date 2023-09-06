@@ -189,7 +189,7 @@ def main(activity_file, output_file):
     logger.info(f"Of which, {len(round_3_uncertain_seqs)} were measured.")
     # Calculate the entropies from round 3 to stratify the 5000 most uncertain from the rest
     round_3_probs = loaders.load_data(os.path.join(
-        data_dir, "LibraryDesign", "Round3", "candidateProbabilities.txt"))
+        data_dir, "LibraryDesign", "Round3", "candidateProbabilities.txt.gz"), compression="gzip")
     round_3_probs = round_3_probs.loc[round_3_uncertain_seqs.index]
     round_3_entropies = round_3_probs.apply(
         stats.entropy, axis=1, base=2).sort_values(ascending=False)

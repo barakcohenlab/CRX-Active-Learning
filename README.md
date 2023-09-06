@@ -8,7 +8,7 @@ Deep learning model for the regulatory grammar of CRX-dependent enhancers and si
     - `processing_config.yml`: Configuration file for how the counts data should be processed into activity scores.
     - `Downloaded`
         - `eLifeMotifs.meme`: The 8 PWMs used in [Friedman *et al.*, 2021](https://elifesciences.org/articles/67403).
-        - The processing script also expects data from [Shepherdson *et al.*, 2023](https://www.biorxiv.org/content/10.1101/2023.05.27.542576v1.full) as `retinopathy_data.parquet` and `retinopathy_metadata.txt`. Relevant files can be obtained from the [repo](https://github.com/barakcohenlab/retinopathy-manuscript) for that publication.
+        - The processing script also expects data from [Shepherdson *et al.*, 2023](https://www.biorxiv.org/content/10.1101/2023.05.27.542576v1.full) as `retinopathy_data.parquet` and `retinopathy_metadata.txt`. The Parquet file has been provided here but can be regenerated from the [repo](https://github.com/barakcohenlab/retinopathy-manuscript) for that publication.
     - `Measurements`
         - All raw barcode counts are in subdirectories called `<Library name>/Samples/`. Each sample has a `.counts` file. The directory structure gets filled with intermediates during data processing.
         - `joined_qc_metrics.txt`: Supplementary Table 5.
@@ -36,15 +36,17 @@ All scripts and notebooks were run on a cluster managed by SLURM.
 3. Run `conda env create -f conda-env.yml`. It is recommended to create the environment with a GPU enabled. This environment includes [our fork](https://github.com/rfriedman22/selene) of the Selene package.
 4. Activate the environment: `source activate active-learning`
 5. Install our extension of the Generic String Kernel:
-```sh
-git clone https://github.com/barakcohenlab/preimage.git
-cd preimage
-python setup.py build_ext -i
-pip install -e .
-```
-The installation will likely raise warnings about a deprecated Numpy API. This is expected behavior. To test if the installation of the kernel worked, first navigate to `preimage/preimage/tests` and then run `python -m unittest` to run 275 unit tests in about 16 seconds. This is expected to fail with 28 errors, all of which are `AttributeError: 'InferenceFitParameters' object has no attribute 'y_lengths'`. These errors are tolerable because they are for a part of the package that we do not use.
+    ```sh
+    git clone https://github.com/barakcohenlab/preimage.git
+    cd preimage
+    python setup.py build_ext -i
+    pip install -e .
+    ```
+    The installation of `preimage` will likely raise warnings about a deprecated Numpy API. This is expected behavior. To test if the installation of the kernel worked, first navigate to `preimage/preimage/tests` and then run `python -m unittest` to run 275 unit tests in about 16 seconds. This is expected to fail with 28 errors, all of which are `AttributeError: 'InferenceFitParameters' object has no attribute 'y_lengths'`. These errors are tolerable because they are for a part of the package that we do not use.
+6. Download `library_metadata.tsv` from the [Retinopathy manuscript repo](https://github.com/barakcohenlab/retinopathy-manuscript/blob/main/Library_Details/library_metadata.tsv) to `Data/Downloaded` and rename it as `retinopathy_metadata.txt`.
+
 ### 2. Run scripts
-Run all Python scripts by submitting the shell scripts to the cluster with `sbatch --mail_user=<user@example.com> script.sh`. You can use the `--dependency=afterok:<job ID>` to setup job dependencies.
+Run all Python scripts by submitting the shell scripts to the cluster with `sbatch --mail-user=<user@example.com> script.sh`. You can use the `--dependency=afterok:<job ID>` to setup job dependencies. You should also `mkdir log` wherever you plan to run your jobs (this might be in a different place from where the repository is cloned).
 
 1. `process_join_annotate_counts.sh`: Process each MPRA sublibrary from raw barcode counts to activity scores, join all sublibraries together, and annotate for metadata. Estimated runtime: 20-30 minutes.
 2. Fit machine learning models (can be done in parallel):
