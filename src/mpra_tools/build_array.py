@@ -15,10 +15,10 @@ sphi = "GCATGC"
 noti = "GCGGCCGC"
 
 
-def generate_barcodes(bc_size=9, min_gc=0.125, max_gc=0.875, denylist=None):
+def generate_barcodes(bc_size=9, min_gc=0.125, max_gc=0.875, homopolymer_cutoff=4,  denylist=None):
     """Generate all possible barcodes with a minimum Hamming distance of 2, excluding those with extreme GC content
     or matching something in the denylist. Always exclude barcodes that match any of the following criteria:
-    * Mononucleotide runs of 3
+    * Homopolymer runs
     * EcoRI, SpeI, SphI, or NotI sites
     * Partial SphI sites (first 4 bp) or partial NotI sites (last 6 bp)
 
@@ -30,6 +30,8 @@ def generate_barcodes(bc_size=9, min_gc=0.125, max_gc=0.875, denylist=None):
         Minimum GC content for barcodes.
     max_gc : float
         Maximum GC content for barcodes.
+    homopolymer_cutoff : int
+       Barcodes with homopolymers of this length or larger will be excluded. 
     denylist : list[str]
         If specified, contains additional sequences to exclude from the list of barcodes (multiplexing sequences, etc.)
 
@@ -47,7 +49,8 @@ def generate_barcodes(bc_size=9, min_gc=0.125, max_gc=0.875, denylist=None):
         denylist = []
 
     # Generate the list of things to exclude
-    denylist += ["AAA", "CCC", "GGG", "TTT", ecori, spei, sphi, noti, sphi[:-2], noti[2:]]
+    denylist += [i * homopolymer_cutoff for i in ["A", "C", "G", "T"]]
+    denylist += [ecori, spei, sphi, noti, sphi[:-2], noti[2:]]
 
     int_to_base = {
         0: "A",
