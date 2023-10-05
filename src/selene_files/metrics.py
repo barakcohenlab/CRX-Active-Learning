@@ -82,6 +82,10 @@ def macro_f1(y_true, y_score):
     return _f1(y_true, y_score, "macro")
 
 
+def weighted_f1(y_true, y_score):
+    return _f1(y_true, y_score, "weighted")
+
+
 def confusion_matrix(y_true, y_score):
     # If y_true is a column vector, flatten it
     if y_true.shape[1] == 1:
