@@ -60,7 +60,7 @@ Run all Python scripts by submitting the shell scripts to the cluster with `sbat
     - `importance_analysis_crx_nrl.sh`: Predicts the effect of CRX and NRL motifs at all possible positions. Estimated runtime: anywhere from 2 hours to 24 hours. This variability may depend on how resources are being shared on the GPUs.
     - `importance_analysis_crx_anytf.sh`: Same but with GFI1 instead of NRL. Estimated runtime: anywhere from 2 hours to 24 hours. This variability may depend on how resources are being shared on the GPUs.
 4. `cnn_k562_classification_sampling.sh`: Benchmark active learning starting conditions and sampling size for a single round with the K562 data.
-5. `cnn_k562_iterative_uncertainty.sh`: Benchmark several rounds of active learning against random sampling with the K562 data and compare performance to a model trained with all the data. Set up FIXME SUMMARY SCRIPT to run after this job has completed.
+5. `cnn_k562_iterative_uncertainty.sh`: Benchmark several rounds of active learning against random sampling with the K562 data and compare performance to a model trained with all the data. Set up `summarize_k562_iterative.sh` to run after this job has completed.
 
 ### 3. Run all notebooks
 These Jupyter notebooks all contain documentation on what they do to transform and visualize data for creating figures.
