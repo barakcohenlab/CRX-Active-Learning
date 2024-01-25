@@ -30,7 +30,7 @@ def performance(model, sampler, seq_size, gpu):
     return measurements
 
 
-def main(folder, out_file, gpu):
+def main(folder, gpu):
     # Init default paramters
     L = 230
     folds = range(1,11)
