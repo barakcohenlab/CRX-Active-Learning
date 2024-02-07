@@ -202,3 +202,17 @@ def saliency_map(seq, model):
     pred = pred.detach().numpy()[0][0]
     
     return hypothetical, actual, pred
+
+
+def actual_saliency_track(seq, model):
+    "Helper function that takes the output of `saliency_map()` and returns a 1D track of the actual importance scores, rather than a (4,L) track."
+    h, a, p = saliency_map(seq, model)
+    idx = np.abs(a).argmax(axis=0)
+    return np.array([
+        a[nt, pos] for pos, nt in enumerate(idx)
+    ])
+
+
+def motif_importance(saliency_track, start, stop, operator=np.sum):
+    "Extract a subsection of a 1D saliency track and summarize them with the provided function, sum by default."
+    return operator(saliency_track[start:stop])
