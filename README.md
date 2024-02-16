@@ -81,11 +81,16 @@ Our CNN takes a batch of one-hot encoded 164-bp DNA as input and outputs the pre
 Extended Data Figures are prefixed with an S in the below table.
 | Notebook name | Figures |
 | -- | -- |
-| `classifier_performance.ipynb` | 1c, 2a, 2b, 2c, S2, S3 |
-| `confident_predictions.ipynb` | 1f |
-| `data_coverage.ipynb` | 2d |
-| `enhancer_mutagenesis.ipynb` | All of Figure 4, S6, S7 |
+| `classifier_performance.ipynb` | 1c, 4a-c, S2, S3 |
+| `confident_predictions.ipynb` | 1d |
+| `crx_motif_importance.ipynb` | 1e, 1f, 3a, S5 |
+| `data_coverage.ipynb` | 4d |
+| `enhancer_mutagenesis.ipynb` | 2a-c, S6, S7a-c |
+| `enhancer_mutagenesis_second_pair.ipynb` | 2d-f, S7d |
 | `filter_svm_performance.ipynb` | S1 |
-| `motif_importance_analysis.ipynb` | 3a, 3b, 3c, 3d, 3e, S4, S5 |
-| `spacing_analysis.ipynb` | 3f, 3g |
-| `src/eval_regression_on_test_sets.py` | 1d, 1e |
+| `global_importance_analysis.ipynb` | 3b, 3c, 3f, 3g, S8 |
+| `k562_many_rounds.ipynb` | 5c-e, S9b |
+| `k562_starting_conditions.ipynb` | 5b, S9a |
+| `mutagenic_series.ipynb` | 3d, 3e |
+| `spacing_analysis.ipynb` | 3h, 3i |
+| `src/eval_regression_on_test_sets.py` | S4 |
