@@ -51,10 +51,13 @@ def main(seed, output_dir):
         "Round3a",
         "Round3b",
         "Round4b",
+        "Round4a",
     ]
     train_df = train_df[train_df["data_batch_name"].isin(batches_to_use)]
     # Also pull out the genomic sequences in the validation set as another evaluation criteria
     validate_genomic_df = validate_df[validate_df["original_genomic"]]
+    # Pull out high confidence sequences for later analysis
+    high_confidence_df = activity_df[activity_df['data_batch_name']=='HighConfidence']
     logger.info(f"Number of sequences available for training: {len(train_df)}")
     logger.info(f"Number of sequences in the validation set: {len(validate_df)}")
     logger.info(f"Number of sequences in the test set: {len(test_df)}")
@@ -70,12 +73,14 @@ def main(seed, output_dir):
     validate_genomic_mat = os.path.join(output_dir, "validate_genomic.mat")
     test_mat = os.path.join(output_dir, "test_set.mat")
     retinopathy_mat = os.path.join(output_dir, "test_retinopathy.mat")
+    high_confidence_mat = os.path.join(output_dir, "high_confidence.mat")
     df_to_mat = [
         [train_df, train_mat],
         [validate_df, validate_mat],
         [validate_genomic_df, validate_genomic_mat],
         [test_df, test_mat],
         [retinopathy_df, retinopathy_mat],
+        [high_confidence_df, high_confidence_mat],
     ]
     for df, mat in df_to_mat:
         modeling.prepare_data_for_selene(

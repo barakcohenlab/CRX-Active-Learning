@@ -92,6 +92,7 @@ def main(output_dir, nfolds, activity_file, modeling_splits, epochs, report_trai
         macro_aupr=metrics.macro_aupr,
         micro_f1=metrics.micro_f1,
         macro_f1=metrics.macro_f1,
+        weighted_f1=metrics.weighted_f1,
     )
 
     # Test set info to log:

@@ -6,4 +6,4 @@ jid=$(echo $jid | cut -f 4 -d " ")
 dirname=ModelFitting/CNN_Reg/
 stdout=log/fit_summarize_regression_starts.out
 stderr=log/fit_summarize_regression_starts.err
-sbatch --dependency=afterok:$jid -o $stdout -e $stderr --mail-type=END,FAIL --wrap="eval $(spack load --sh miniconda3) source activate active-learning; python3 src/summarize_regression_starts.py $dirname; python3 src/eval_regression_on_test_sets.py $dirname/best_model/"
+sbatch --dependency=afterok:$jid -o $stdout -e $stderr --mail-type=END,FAIL --wrap="eval $(spack load --sh miniconda3) source activate active-learning; python3 src/summarize_regression_starts.py $dirname; python3 src/eval_regression_on_test_sets.py /best_model/"

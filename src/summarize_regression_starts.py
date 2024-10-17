@@ -4,6 +4,8 @@ Summarize the performance of the regression model across multiple random starts.
 """
 import os
 import sys
+import glob
+import shutil
 
 import numpy as np
 import pandas as pd
@@ -24,14 +26,17 @@ if len(sys.argv) != 2:
     quit(1)
 
 base_dir = sys.argv[1]
-nstarts = 20
+best_model_dir = os.path.join(base_dir, 'best_model')
+os.makedirs(best_model_dir, exist_ok=True)
+# nstarts = 20
 logger = log.get_logger()
 
 # cd into the appropriate directory and get all subdirectories, which correspond to the random starts
-os.chdir(base_dir)
+# os.chdir(base_dir)
 # (best epoch number, train loss, val loss, val PCC, val SCC)
 performance = []
-subdirs = [str(i) for i in np.arange(1, nstarts + 1)]
+subdirs = glob.glob(os.path.join(base_dir, '*'))
+subdirs = [path  for path in subdirs if path.split('/')[-1].isnumeric()]
 for dirname in subdirs:
     train_loss = loaders.load_data(os.path.join(dirname, "selene_sdk.train_model.train.txt"), index_col=None).squeeze()
     valid_metrics = loaders.load_data(os.path.join(dirname, "selene_sdk.train_model.validation.txt"), index_col=None)
@@ -54,14 +59,15 @@ for dirname in subdirs:
     performance.append(pd.Series(subdir_metrics, name=dirname))
 
 performance = pd.DataFrame(performance)
-loaders.write_data(performance, "random_start_performance.txt", index_label="seed")
+# loaders.write_data(performance, "random_start_performance.txt", index_label="seed")
 summary = performance.agg(["mean", "std", "min", "max"])
 logger.info(f"Average performance of this architecture:\n{summary}")
 
 # Get the best model and make a copy in the main directory
 best_model = performance["pcc"].idxmax()
 logger.info(f"Best PCC was with model {best_model}")
-os.symlink(best_model, "best_model")
+#os.symlink(best_model, os.path.join(base_dir, 'best_model'))
+shutil.copytree(best_model, best_model_dir, dirs_exist_ok=True)
 
 # Plot training loss vs validation loss vs number of epochs
 fig, ax = plt.subplots()
@@ -70,7 +76,7 @@ ax.set_xlabel("Training loss")
 ax.set_ylabel("Validation loss")
 cax = make_axes_locatable(ax).append_axes("right", size="5%", pad="2%")
 fig.colorbar(artists, cax=cax, label="Number of epochs")
-plot_utils.save_fig(fig, "trainVsValidationLoss")
+plot_utils.save_fig(fig, os.path.join(best_model_dir,"trainVsValidationLoss"))
 plt.close(fig)
 
 # Plot training loss vs validation PCC
@@ -78,7 +84,7 @@ fig, ax = plt.subplots()
 ax.scatter(performance["train_loss"], performance["pcc"], c="k")
 ax.set_xlabel("Training loss")
 ax.set_ylabel("Validation PCC")
-plot_utils.save_fig(fig, "pccVsLoss")
+plot_utils.save_fig(fig, os.path.join(best_model_dir,"trainVsValidationLoss"))
 plt.close(fig)
 
 # Now read in the train/validation info for each model and join it together
@@ -103,5 +109,5 @@ metrics = metrics.reset_index(
     ["category", "metric"],
     axis=1
 )
-
-loaders.write_data(metrics, "random_start_train_validate.txt")
+loaders.write_data(performance, os.path.join(best_model_dir,"random_start_performance.txt"), index_label="seed")
+loaders.write_data(metrics, os.path.join(best_model_dir, "random_start_train_validate.txt"))
